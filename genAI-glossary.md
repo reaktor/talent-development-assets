@@ -44,6 +44,8 @@
 
 **Embedding** - A mathematical representation of data (like words or images) as a vector in a high-dimensional space that captures semantic relationships. In language models, embeddings convert tokens into dense numerical vectors that encode meaning and enable the model to understand relationships between different pieces of text.
 
+**Evals (Evaluations)** - Systematic testing and benchmarking of AI models to measure their performance across different tasks and scenarios. Evals typically involve running models on standardized test datasets, measuring metrics like accuracy, response quality, and safety, and comparing performance across different models or versions. Common eval frameworks include HELM, MMLU, and GLUE, which test capabilities like reasoning, knowledge, and language understanding. Evals are essential for model development, safety assessment, and performance comparison.
+
 ## F
 
 **Few-shot Learning** - The ability of AI models to learn new tasks or concepts from just a few examples (typically 2-10 examples) without extensive retraining. This is achieved by providing the model with a few examples of the desired task in the prompt, allowing it to understand the pattern and apply it to new inputs. Few-shot learning is particularly powerful in large language models, which can quickly adapt to new tasks by seeing examples in context.
@@ -57,6 +59,8 @@
 **Generative AI** - AI systems that can create new content, such as text, images, music, or code, based on learned patterns.
 
 **GPT (Generative Pre-trained Transformer)** - A family of large language models developed by OpenAI that use transformer architecture.
+
+**Guardrails** - Safety mechanisms and constraints implemented in AI systems to prevent harmful, inappropriate, or unintended outputs. Guardrails can include content filters, safety classifiers, output validation, and behavioral constraints that ensure AI models operate within acceptable boundaries. They act as protective barriers that monitor and control AI behavior, helping prevent issues like harmful content generation, privacy violations, or misuse. Guardrails are essential for responsible AI deployment and can be implemented at various levels, from model training to runtime monitoring.
 
 ## H
 
@@ -136,6 +140,8 @@
 
 **Small Language Model (SLM)** - Language models with fewer parameters (typically under 10 billion) that are more efficient and accessible than large language models. SLMs offer faster inference, lower computational requirements, and can run on consumer hardware while still providing good performance for many tasks. They represent a trade-off between capability and resource efficiency, making AI more accessible for edge computing and cost-sensitive applications.
 
+**Structured Outputs** - A method for AI models to generate data in a predefined format (like JSON, XML, or function calls) rather than free-form text. This enables models to interface with external systems, APIs, and tools by producing outputs that can be reliably parsed and processed by other software. Structured outputs are essential for tool calling, API integration, and any application where the model's output needs to be consumed by other systems rather than humans.
+
 **Supervised Learning** - Machine learning approach where models are trained on labeled data to learn input-output mappings.
 
 **Synthetic Data** - Artificially generated data used to train or test AI models when real data is insufficient or unavailable.
@@ -148,8 +154,7 @@
 
 **Token-Vector Relationship** - The fundamental connection between discrete text units (tokens) and their continuous mathematical representations (vectors). When text is processed by AI models, each token is mapped to a dense vector that encodes its semantic meaning. Similar tokens have similar vectors, enabling the model to understand relationships like synonyms, context, and meaning through vector similarity calculations.
 
-**Tool**
-A tool is an external capability an AI agent can call to extend what it can do on its own. By default, an AI model only generates text; a tool lets it act — for example, run code, search the web, look up a database, or trigger a workflow. Tools act like “plug-ins” or “skills.” The agent decides when to use them to accomplish a task it can’t solve by reasoning alone.
+**Tool** - An external capability that an AI agent can call to extend what it can do on its own. By default, an AI model only generates text; a tool lets it act — for example, run code, search the web, look up a database, or trigger a workflow. Tools are triggered by the model using structured outputs (like function calls or API requests) that specify which tool to use and what parameters to pass. Tools act like "plug-ins" or "skills" that the agent decides to use when it can't accomplish a task through reasoning alone.
 
 **Training** - The process of teaching a machine learning model to perform a task by exposing it to data and adjusting its parameters to minimize errors. During training, the model learns patterns and relationships in the data through repeated exposure and parameter updates. This is how models acquire their capabilities, whether through supervised learning (with labeled examples), unsupervised learning (finding patterns in unlabeled data), or reinforcement learning (learning from rewards and penalties).
 
