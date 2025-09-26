@@ -148,6 +148,9 @@
 
 **Token-Vector Relationship** - The fundamental connection between discrete text units (tokens) and their continuous mathematical representations (vectors). When text is processed by AI models, each token is mapped to a dense vector that encodes its semantic meaning. Similar tokens have similar vectors, enabling the model to understand relationships like synonyms, context, and meaning through vector similarity calculations.
 
+**Tool**
+A tool is an external capability an AI agent can call to extend what it can do on its own. By default, an AI model only generates text; a tool lets it act — for example, run code, search the web, look up a database, or trigger a workflow. Tools act like “plug-ins” or “skills.” The agent decides when to use them to accomplish a task it can’t solve by reasoning alone.
+
 **Training** - The process of teaching a machine learning model to perform a task by exposing it to data and adjusting its parameters to minimize errors. During training, the model learns patterns and relationships in the data through repeated exposure and parameter updates. This is how models acquire their capabilities, whether through supervised learning (with labeled examples), unsupervised learning (finding patterns in unlabeled data), or reinforcement learning (learning from rewards and penalties).
 
 **Transformer** - A neural network architecture that uses attention mechanisms and has become the foundation for many modern AI models.
