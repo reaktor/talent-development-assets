@@ -140,6 +140,10 @@
 
 **Small Language Model (SLM)** - Language models with fewer parameters (typically under 10 billion) that are more efficient and accessible than large language models. SLMs offer faster inference, lower computational requirements, and can run on consumer hardware while still providing good performance for many tasks. They represent a trade-off between capability and resource efficiency, making AI more accessible for edge computing and cost-sensitive applications.
 
+**Spec** - Specification for development. Level of detail and scope can vary. There are multiple variants like PRDs and ARDs.
+
+**Spec driven development** - Drafting detailed technical specification documents that can be used in prompts for AI assisted development.
+
 **Structured Outputs** - A method for AI models to generate data in a predefined format (like JSON, XML, or function calls) rather than free-form text. This enables models to interface with external systems, APIs, and tools by producing outputs that can be reliably parsed and processed by other software. Structured outputs are essential for tool calling, API integration, and any application where the model's output needs to be consumed by other systems rather than humans.
 
 **Supervised Learning** - Machine learning approach where models are trained on labeled data to learn input-output mappings.
