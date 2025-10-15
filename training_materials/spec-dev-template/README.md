@@ -120,3 +120,7 @@ View the complete design system at `/` route when running the development server
 - **i18next** - Internationalization framework
 - **ESLint & Prettier** - Code quality and formatting
 - **PostCSS & Autoprefixer** - CSS processing
+
+## Complementary Training Deck
+
+[Click](https://docs.google.com/presentation/d/1z-5guoAgFqe0DF-VO6LanJEPR6AxVFs2sBbpPIkqAcA/edit?usp=sharing)
