@@ -16,11 +16,27 @@ A complete React/TypeScript starter template designed for AI-assisted developmen
 
 **Location:** `training_materials/spec-dev-template/`
 
+#### 🎥 Spec-Driven Development Video Series
+A comprehensive video training series covering the spec-driven development methodology and workflow.
+
+**Location:** `training_materials/spec-dev-videos/`
+
+**Videos:**
+1. **1-spec-dev-intro.mp4** - Introduction to spec-driven development fundamentals
+2. **2-system-context.mp4** - Understanding system context and architecture planning
+3. **3-feature-context.md** - Feature context specification and requirements definition
+4. **4-prompting.mp4** - Effective prompting techniques for AI-assisted development
+
 ## 📁 Repository Structure
 
 ```
 ├── training_materials/
 │   ├── genAI-glossary.md          # Comprehensive AI terminology reference
+│   ├── spec-dev-videos/           # Video training series
+│   │   ├── 1-spec-dev-intro.mp4
+│   │   ├── 2-system-context.mp4
+│   │   ├── 3-feature-context.mp4
+│   │   └── 4-prompting.mp4
 │   └── spec-dev-template/         # React/TypeScript starter template
 │       ├── docs/                  # Documentation and specifications
 │       ├── src/                   # Source code with atomic design structure
