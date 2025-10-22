@@ -24,8 +24,9 @@ A comprehensive video training series covering the spec-driven development metho
 **Videos:**
 1. **1-spec-dev-intro.mp4** - Introduction to spec-driven development fundamentals
 2. **2-system-context.mp4** - Understanding system context and architecture planning
-3. **3-feature-context.md** - Feature context specification and requirements definition
+3. **3-feature-context.mp4** - Feature context specification and requirements definition
 4. **4-prompting.mp4** - Effective prompting techniques for AI-assisted development
+5. **5-doc-cleanup.mp4** - Documentation cleanup and specification refinement
 
 ## 📁 Repository Structure
 
@@ -36,7 +37,8 @@ A comprehensive video training series covering the spec-driven development metho
 │   │   ├── 1-spec-dev-intro.mp4
 │   │   ├── 2-system-context.mp4
 │   │   ├── 3-feature-context.mp4
-│   │   └── 4-prompting.mp4
+│   │   ├── 4-prompting.mp4
+│   │   └── 5-doc-cleanup.mp4
 │   └── spec-dev-template/         # React/TypeScript starter template
 │       ├── docs/                  # Documentation and specifications
 │       ├── src/                   # Source code with atomic design structure

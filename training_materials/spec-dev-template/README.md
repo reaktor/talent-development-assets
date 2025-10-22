@@ -204,25 +204,6 @@ View the design system at root `/` in dev mode. Components are organized:
 curl http://localhost:3000/api/todos
 ```
 
-**POST** `/api/todos` - Create a todo
-```bash
-curl -X POST http://localhost:3000/api/todos \
-  -H "Content-Type: application/json" \
-  -d '{"title":"My task"}'
-```
-
-**PUT** `/api/todos/:id` - Update a todo
-```bash
-curl -X PUT http://localhost:3000/api/todos/1 \
-  -H "Content-Type: application/json" \
-  -d '{"title":"Updated","completed":true}'
-```
-
-**DELETE** `/api/todos/:id` - Delete a todo
-```bash
-curl -X DELETE http://localhost:3000/api/todos/1
-```
-
 **GET** `/api/health` - Health check
 ```bash
 curl http://localhost:3000/api/health
