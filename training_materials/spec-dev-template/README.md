@@ -122,11 +122,12 @@ Why? Development database doesn't need persistence between restarts. Forces work
 3. Seed with hello-world data (todos)
 4. Log success message
 
-**Schema (Hello World):**
+**Schema (Hello World - CREATE_TODOS Feature):**
 ```sql
 CREATE TABLE todos (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
+  description TEXT,
   completed BOOLEAN DEFAULT 0,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 )
@@ -139,6 +140,7 @@ CREATE TABLE todos (
 - Simple CRUD operations
 - **Location:** `backend/data/app.db` (auto-generated on first run)
 - **Behavior:** Auto-clears and reseeds on every server start
+- **Current Implementation:** CREATE_TODOS feature with title (required), optional description, completion tracking, and timestamps
 
 ### Security Notes (Development Only)
 
@@ -183,8 +185,10 @@ npm run lint --workspace=frontend
 
 - **SPA (Single Page Application)**
 - **Atomic Design System**: atoms → molecules → organisms
+- **Styling:** Tailwind CSS for consistent, utility-first approach
 - **Port**: 5173 (Vite default)
 - **HMR**: Instant hot module reloading on file changes
+- **Current Feature:** Todo creation and list management with optimized UX (relative dates, minimal UI, pragmatic feedback)
 
 ### Design System
 
@@ -197,11 +201,29 @@ View the design system at root `/` in dev mode. Components are organized:
 
 ## 📡 API Reference
 
-### Current Endpoints (Hello World)
+### Current Endpoints (CREATE_TODOS Feature)
 
 **GET** `/api/todos` - Fetch all todos
 ```bash
 curl http://localhost:3000/api/todos
+```
+
+**POST** `/api/todos` - Create a new todo
+```bash
+curl -X POST http://localhost:3000/api/todos \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Buy milk", "description": "Optional details"}'
+```
+
+Response:
+```json
+{
+  "id": 1,
+  "title": "Buy milk",
+  "description": "Optional details",
+  "completed": false,
+  "created_at": "2025-10-24T14:32:00.000Z"
+}
 ```
 
 **GET** `/api/health` - Health check
@@ -215,6 +237,7 @@ curl http://localhost:3000/api/health
 - **JSON**: Request/response format
 - **Standard HTTP verbs**: GET, POST, PUT, DELETE
 - **Consistent error format**
+- **Request validation**: Title required, max 255 chars. Description optional, max 1000 chars
 
 ---
 
@@ -291,6 +314,34 @@ npm run preview --workspace=frontend
 | Add caching | High traffic | Redis cache layer |
 
 **Until then: Keep it simple.**
+
+---
+
+## 🎯 Files to Modify When Expanding
+
+### Add Backend Endpoint
+- `backend/src/index.ts` - Add route handler
+- `backend/src/db.ts` - Add query + table if needed
+- `docs/specs/` - Document API
+
+### Add Frontend Feature
+- `frontend/src/components/` - Add React component
+- `frontend/src/App.tsx` - Wire component into page
+- `frontend/src/api/` - Add API client function
+- Call backend API from component
+
+### Change Database Schema
+- `backend/src/db.ts` - Update `initializeDatabase()` and queries
+- Delete `backend/data/app.db` (will auto-recreate on next startup)
+
+### Add UX Utilities
+- `frontend/src/utils/` - Add utility functions (e.g., formatRelativeDate for date handling)
+- Update components to use utilities instead of inline formatting
+
+### Styling & Layout
+- Use Tailwind classes in components (`className="..."`)
+- Follow atomic design: atoms → molecules → organisms
+- Maintain consistency with existing design tokens
 
 ---
 
@@ -426,18 +477,23 @@ npm run lint       # Lint frontend code
 - WAL mode enabled for performance
 - Tables created successfully
 - Located: `backend/data/app.db`
+- Schema includes todos with title, description, completed status, and timestamps
 
 ✅ **Backend Code**
 - TypeScript compiles successfully
 - Express server configured
-- API routes defined (todos CRUD)
+- API routes: GET /api/todos, POST /api/todos (create), GET /api/health
 - CORS enabled for development
+- Input validation and error handling
 - Builds to `backend/dist/`
 
 ✅ **Frontend**
 - All React components ready
 - Atomic design system in place
-- Tailwind CSS v4 configured
+- Tailwind CSS v4 configured (utility-first styling)
+- Todo creation form with title (required) and optional description
+- Todo list with relative date formatting (Today, Yesterday, or date)
+- UX optimized: minimal UI, pragmatic error messages, no decorative elements
 - ESLint + Prettier setup
 
 ✅ **Development Setup**
@@ -452,23 +508,12 @@ npm run lint       # Lint frontend code
 - React 19 fully typed
 - Component props use TypeScript interfaces
 
----
-
-## 🎯 Files to Modify When Expanding
-
-### Add Backend Endpoint
-- `backend/src/index.ts` - Add route handler
-- `backend/src/db.ts` - Add query + table if needed
-- `docs/specs/` - Document API
-
-### Add Frontend Feature
-- `frontend/src/components/` - Add React component
-- `frontend/src/App.tsx` - Wire component into page
-- Call backend API from component
-
-### Change Database Schema
-- `backend/src/db.ts` - Update `initializeDatabase()` and queries
-- Delete `backend/data/app.db` (will auto-recreate on next startup)
+✅ **UX Implementation**
+- Form validation with inline error feedback
+- Relative date formatting utility (`formatRelativeDate`)
+- Optimized spacing and layout with Tailwind
+- Accessible form fields with proper labels
+- Disabled state management during submission
 
 ---
 
@@ -478,6 +523,7 @@ npm run lint       # Lint frontend code
 - SQLite WAL mode (faster writes)
 - Prepared statements (no SQL injection, faster queries)
 - Vite for frontend (instant HMR, fast builds)
+- Tailwind CSS for optimized styling
 
 **Future optimizations (if needed):**
 - Database indexes on frequently queried columns
@@ -510,8 +556,11 @@ When backend and frontend share types, create `shared/types.ts` in repo root.
 - CORS is enabled for frontend to call backend APIs
 - Backend uses ESM modules (`"type": "module"`)
 - Both TS codebases - full type safety across stack
+- **Current Feature:** CREATE_TODOS is fully implemented with optimized UX (Sprints 1-2 complete)
+- **Styling:** All components use Tailwind CSS for consistency and maintainability
+- **UX Approach:** Pragmatic, user-focused design that removes unnecessary UI elements and reduces cognitive load
 - This architecture is intentionally simple. It's easier to make a simple system more complex than to make a complex system simple. Start here, measure what actually needs optimization before adding complexity.
 
 ---
 
-**Archimedes' Note:** This architecture is intentionally simple. Start here, measure what actually needs optimization before adding complexity. -Archimedes fullstack
+**Archimedes' Note:** Current implementation complete for CREATE_TODOS feature. Frontend UI optimized per Torvalds UX guidelines. Ready for next feature expansion. -Archimedes fullstack
