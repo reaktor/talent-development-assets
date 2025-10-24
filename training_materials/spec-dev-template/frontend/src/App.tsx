@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { DesignSystem } from './components/pages';
 import { TodoForm } from './components/molecules';
 import { fetchTodos, createTodo, type Todo } from './api/todos';
+import { formatRelativeDate } from './utils/formatDate';
 
 function TodosList() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -37,80 +38,49 @@ function TodosList() {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
-      <h1>My Todos</h1>
+    <div className="px-5 py-5 max-w-3xl mx-auto">
+      <h1 className="text-2xl font-bold mb-6">My Todos</h1>
       
       <TodoForm 
         onSubmit={handleCreateTodo}
         isLoading={loading}
       />
 
-      {loading && todos.length === 0 && <p>Loading todos...</p>}
-      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+      {loading && todos.length === 0 && <p className="text-gray-600">Loading todos...</p>}
+      {error && <p className="text-red-600">Error: {error}</p>}
       
-      {todos.length === 0 && !loading && (
-        <p style={{ color: '#666', fontStyle: 'italic' }}>No todos yet. Create one to get started!</p>
-      )}
-
       {todos.length > 0 && (
-        <div>
-          <p style={{ color: '#666', marginBottom: '16px' }}>
-            {todos.length} {todos.length === 1 ? 'todo' : 'todos'}
-          </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            {todos.map((todo) => (
-              <div
-                key={todo.id}
-                style={{
-                  padding: '12px',
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '6px',
-                  backgroundColor: todo.completed ? '#f3f4f6' : '#fff',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                  <input
-                    type="checkbox"
-                    checked={todo.completed}
-                    readOnly
-                    style={{ marginTop: '4px' }}
-                  />
-                  <div style={{ flex: 1 }}>
-                    <h3
-                      style={{
-                        margin: '0 0 8px 0',
-                        textDecoration: todo.completed ? 'line-through' : 'none',
-                        color: todo.completed ? '#9ca3af' : '#1f2937',
-                      }}
-                    >
-                      {todo.title}
-                    </h3>
-                    {todo.description && (
-                      <p
-                        style={{
-                          margin: '0 0 8px 0',
-                          color: '#6b7280',
-                          fontSize: '14px',
-                        }}
-                      >
-                        {todo.description}
-                      </p>
-                    )}
-                    <p
-                      style={{
-                        margin: '0',
-                        fontSize: '12px',
-                        color: '#9ca3af',
-                      }}
-                    >
-                      {new Date(todo.created_at).toLocaleDateString()} at{' '}
-                      {new Date(todo.created_at).toLocaleTimeString()}
-                    </p>
-                  </div>
-                </div>
+        <div className="space-y-2">
+          {todos.map((todo) => (
+            <div
+              key={todo.id}
+              className={`p-3 border rounded-lg ${
+                todo.completed
+                  ? 'bg-gray-100 border-gray-300'
+                  : 'bg-white border-gray-200'
+              }`}
+            >
+              <div className="flex flex-col gap-2">
+                <h3
+                  className={`text-base font-medium m-0 ${
+                    todo.completed
+                      ? 'line-through text-gray-500'
+                      : 'text-gray-900'
+                  }`}
+                >
+                  {todo.title}
+                </h3>
+                {todo.description && (
+                  <p className="text-sm text-gray-600 m-0">
+                    {todo.description}
+                  </p>
+                )}
+                <p className="text-xs text-gray-400 m-0">
+                  {formatRelativeDate(todo.created_at)}
+                </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
@@ -122,11 +92,17 @@ function App() {
 
   return (
     <div>
-      <div style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
-        <button onClick={() => setView('todos')} style={{ marginRight: '10px', fontWeight: view === 'todos' ? 'bold' : 'normal' }}>
+      <div className="px-2.5 py-2.5 border-b border-gray-300">
+        <button 
+          onClick={() => setView('todos')} 
+          className={`mr-2.5 font-semibold ${view === 'todos' ? 'font-bold' : 'font-normal'}`}
+        >
           Todos
         </button>
-        <button onClick={() => setView('design')} style={{ fontWeight: view === 'design' ? 'bold' : 'normal' }}>
+        <button 
+          onClick={() => setView('design')} 
+          className={`font-semibold ${view === 'design' ? 'font-bold' : 'font-normal'}`}
+        >
           Design System
         </button>
       </div>

@@ -40,14 +40,8 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, isLoading = false }) => {
 
   return (
     <form onSubmit={handleSubmit} className="mb-6">
-      <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-        {error && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-sm text-red-700">{error}</p>
-          </div>
-        )}
-
-        <div className="mb-4">
+      <div className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
+        <div className="mb-3">
           <Input
             id="todo-title"
             label="Title"
@@ -57,9 +51,12 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, isLoading = false }) => {
             disabled={isDisabled}
             aria-label="Todo title"
           />
+          {error && (
+            <p className="mt-1 text-xs text-orange-600">{error}</p>
+          )}
         </div>
 
-        <div className="mb-4">
+        <div className="mb-3">
           <label
             htmlFor="todo-description"
             className="block text-sm font-medium text-gray-700 mb-1"
@@ -83,9 +80,6 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, isLoading = false }) => {
             "
             aria-label="Todo description"
           />
-          <p className="mt-1 text-xs text-gray-500">
-            {description.length}/1000 characters
-          </p>
         </div>
 
         <Button
@@ -95,7 +89,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, isLoading = false }) => {
           disabled={isDisabled}
           aria-busy={isSubmitting}
         >
-          {isSubmitting ? 'Creating...' : 'Create'}
+          Create
         </Button>
       </div>
     </form>
